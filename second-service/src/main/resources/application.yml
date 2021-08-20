@@ -2,7 +2,7 @@ server:
   port: 8082
 
 spring:
-  applicaation:
+  application:
     name: my-second-service
 
   eureka:

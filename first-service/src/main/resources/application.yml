@@ -1,11 +1,13 @@
 server:
-  port: 8081
+  port: 0
 
 spring:
-  applicaation:
+  application:
     name: my-first-service
 
-  eureka:
-    client:
-      fetch-registry: false
-      register-with-eureka: false
+eureka:
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
