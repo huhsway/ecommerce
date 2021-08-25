@@ -19,6 +19,7 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<Auth
     Environment env;
 
     public AuthorizationHeaderFilter(Environment env) {
+        super(Config.class);
         this.env = env;
     }
 
@@ -36,7 +37,7 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<Auth
                 return onError(exchange, "No authorization header", HttpStatus.UNAUTHORIZED);
             }
 
-            String authorizationHeader = request.getHeaders().get(org.springframework.http.HttpHeaders.AUTHORIZATION).get(0);
+            String authorizationHeader = request.getHeaders().get(HttpHeaders.AUTHORIZATION).get(0);
             String jwt = authorizationHeader.replace("Bearer", "");
 
             if (!isJwtValid(jwt)) {
@@ -54,7 +55,7 @@ public class AuthorizationHeaderFilter extends AbstractGatewayFilterFactory<Auth
 
         try {
             subject = Jwts.parser().setSigningKey(env.getProperty("token.secret"))
-                    .parseClaimsJwt(jwt).getBody()
+                    .parseClaimsJws(jwt).getBody()
                     .getSubject();
         } catch (Exception ex) {
             returnValue = false;
