@@ -4,12 +4,20 @@ server:
 spring:
   application:
     name: config-service
-  profiles:
-    active: native
   cloud:
     config:
       server:
-        native:
-          search-locations: file:\\\C:\workspace\ecommerce\git-local-repo
+        git:
+          uri: https://github.com/huhsway/spring-cloud-config
+#spring:
+#  application:
+#    name: config-service
+#  profiles:
+#    active: native
+#  cloud:
+#    config:
+#      server:
+#        native:
+#          search-locations: file:\\\C:\workspace\ecommerce\git-local-repo
 
 
