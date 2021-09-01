@@ -1,2 +1,6 @@
 encrypt:
-  key: abcdefghijklmnopqrstuvwxyz0123456789
+#  key: abcdefghijklmnopqrstuvwxyz0123456789
+  key-store:
+    location: file:///C:/Program Files/Java/jdk-11.0.11/bin/apiEncryptionKey.jks
+    password: test1234
+    alias: apiEncryptionKey
